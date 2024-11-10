@@ -1,20 +1,20 @@
-console.log(!(x || y) === (!x && !y));
-console.log(!(x && y) === (!x || !y));
+var elem = null;
 
-var total = 200;    // 총 인원
+var value = elem?.value;
+console.log(value);     //undefined
 
-var x = 120;        // a 참가
-var y = 115;        // b 참가
-var z = 17;         // 참가 x
-var onlyB;          // b만 참가한 인원
+value = elem && elem.value;
+console.log(value);     //null
 
-///
-var other = total - z;  // 하나 이상 참가한 인원
-var both = x + y - (other);     // 둘 다 참가한 인원 52
-onlyB = y - both;
+//논리 연산자는 좌항 피연산자가 false로 평가되는 Falsy값이면
+//좌항 피연산자를 그대로 반환한다.
+//하지만 0 이나 ''은 객체로 평가될 떄도 있다.
+var str = '';
 
-console.log("B만 참가한 인원 : " + onlyB);
+var length = str && str.length;
+console.log(length);    //''
 
-//onlyB = y - (x + y - (total - z))
-//onlyB = -x + total - z;
-console.log((total - onlyB) === (x + z));
+//옵셔널 체이닝 연산자는 좌항 피연산자가 Falsy값이라도
+//null 또는 undefined가 아니면 우항의 프로퍼티 참조를 이어간다
+length = str?.length;
+console.log(length);    //0
